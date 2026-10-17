@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect x="6" y="6" width="188" height="188" rx="16" fill="#1f1a15" stroke="#1c1410" stroke-width="8"/>
+  <rect x="17" y="17" width="166" height="166" rx="10" fill="none" stroke="#3f382d" stroke-width="3"/>
+  <g transform="rotate(-28 100 96)"><rect x="92" y="30" width="16" height="152" rx="7" fill="#6a4d2a" stroke="#1c1410" stroke-width="6"/><path d="M92 66h16M92 140h16M92 168h16" stroke="#47331c" stroke-width="4"/><path d="M92 60c38 4 60 26 60 54 0 14-10 26-24 28-18 3-32-8-38-22z" fill="#c4ccd6" stroke="#1c1410" stroke-width="6" stroke-linejoin="round"/><path d="M150 74c-16 2-38 16-52 40" fill="none" stroke="#969fab" stroke-width="5"/><path d="M152 114l-22 6 6 16z" fill="#969fab" stroke="#1c1410" stroke-width="4" stroke-linejoin="round"/><path d="M74 52h36v14H74z" fill="#c9542e" stroke="#1c1410" stroke-width="5" stroke-linejoin="round"/><path d="M74 96c-9 6-12 18-8 28" fill="none" stroke="#47331c" stroke-width="6" stroke-linecap="round"/><circle cx="100" cy="192" r="10" fill="#c9542e" stroke="#1c1410" stroke-width="6"/></g>
+  <path d="M40 150h120l-14 16 14 16H40l14-16z" fill="#5a6b4a" stroke="#1c1410" stroke-width="5" stroke-linejoin="round"/>
+</svg>

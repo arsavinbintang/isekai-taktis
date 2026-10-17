@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <clipPath id="ck1"><path d="M100 22C138 30 166 34 178 36C180 86 171 136 100 178C29 136 20 86 22 36C34 34 62 30 100 22Z"/></clipPath>
+  </defs>
+  <path d="M100 8C142 18 174 22 188 24C190 82 180 142 100 192C20 142 10 82 12 24C26 22 58 18 100 8Z" fill="#544460" stroke="#1c1410" stroke-width="5"/>
+  <path d="M100 22C138 30 166 34 178 36C180 86 171 136 100 178C29 136 20 86 22 36C34 34 62 30 100 22Z" fill="#16121c" stroke="#1c1410" stroke-width="3"/>
+  <g clip-path="url(#ck1)">
+    <circle cx="100" cy="82" r="54" fill="#221c2c"/>
+    <path d="M14 156C56 142 144 142 186 156L186 184L14 184Z" fill="#0e0b14" opacity="0.6"/>
+    <path d="M100 22L118 44L100 66L82 44Z" fill="#2b2438"/>
+    <path d="M22 70L48 76L26 96Z" fill="#2b2438"/>
+    <path d="M178 70L152 76L174 96Z" fill="#2b2438"/>
+  </g>
+  <path d="M100 130C134 130 160 148 170 178L30 178C40 148 66 130 100 130Z" fill="#2e2a33" stroke="#1c1410" stroke-width="4"/>
+  <path d="M100 130C134 130 160 148 170 178L154 178C146 156 126 140 100 138Z" fill="#211e26"/>
+  <path d="M74 148C86 162 94 172 100 178" fill="none" stroke="#211e26" stroke-width="3"/>
+  <path d="M126 148C114 162 106 172 100 178" fill="none" stroke="#211e26" stroke-width="3"/>
+  <path d="M46 178C48 158 58 144 76 138L84 152C68 158 60 166 60 178Z" fill="#3b3644" stroke="#1c1410" stroke-width="4"/>
+  <path d="M154 178C152 158 142 144 124 138L116 152C132 158 140 166 140 178Z" fill="#2a2632" stroke="#1c1410" stroke-width="4"/>
+  <path fill-rule="evenodd" d="M100 30C130 34 148 58 146 96C145 124 136 142 126 152C114 162 86 162 74 152C64 142 55 124 54 96C52 58 70 34 100 30ZM100 60C120 60 130 78 128 100C126 124 114 138 100 138C86 138 74 124 72 100C70 78 80 60 100 60Z" fill="#17161b" stroke="#1c1410" stroke-width="4"/>
+  <path d="M74 74C78 56 88 46 102 44" fill="none" stroke="#37323f" stroke-width="5" stroke-linecap="round"/>
+  <path d="M130 82C132 104 128 128 118 144" fill="none" stroke="#0e0d11" stroke-width="6" stroke-linecap="round"/>
+  <path d="M78 106C84 100 94 98 100 98C106 98 116 100 122 106C116 112 106 114 100 114C94 114 84 112 78 106Z" fill="#0b0a0e"/>
+  <path d="M74 116C84 108 92 106 100 106C108 106 116 108 126 116L130 138L124 148L116 140L110 150L102 141L94 151L86 141L78 149L72 138L66 144Z" fill="#4a2b57" stroke="#1c1410" stroke-width="3.5"/>
+  <path d="M76 122C88 116 112 116 124 122" fill="none" stroke="#613a6e" stroke-width="3"/>
+  <path d="M80 134C92 130 108 130 120 134" fill="none" stroke="#37203f" stroke-width="3"/>
+  <ellipse cx="88" cy="94" rx="17" ry="12" fill="#ff9d00" opacity="0.3"/>
+  <ellipse cx="112" cy="94" rx="17" ry="12" fill="#ff9d00" opacity="0.3"/>
+  <path d="M78 96L96 88L96 101L78 102Z" fill="#ffc447" stroke="#1c1410" stroke-width="2.5"/>
+  <path d="M122 96L104 88L104 101L122 102Z" fill="#ffc447" stroke="#1c1410" stroke-width="2.5"/>
+  <path d="M80 95L93 90L93 97L80 99Z" fill="#fff0c2"/>
+  <path d="M120 95L107 90L107 97L120 99Z" fill="#fff0c2"/>
+  <g transform="rotate(35 100 154)">
+    <path d="M100 114L107 136L105 144L95 144L93 136Z" fill="#9aa3b2" stroke="#1c1410" stroke-width="3"/>
+    <path d="M100 114L104 136L103 144L99 144L99 118Z" fill="#c9d0da"/>
+    <path d="M82 144L118 144L118 152L82 152Z" fill="#3a3540" stroke="#1c1410" stroke-width="3"/>
+    <path d="M95 152L105 152L105 166L95 166Z" fill="#26222c" stroke="#1c1410" stroke-width="3"/>
+    <path d="M95 156L105 156M95 161L105 161" stroke="#4a4455" stroke-width="2.5"/>
+    <circle cx="100" cy="170" r="5.5" fill="#3a3540" stroke="#1c1410" stroke-width="3"/>
+  </g>
+  <g transform="rotate(-35 100 154)">
+    <path d="M100 114L107 136L105 144L95 144L93 136Z" fill="#8b93a2" stroke="#1c1410" stroke-width="3"/>
+    <path d="M100 114L104 136L103 144L99 144L99 118Z" fill="#b9c1cc"/>
+    <path d="M82 144L118 144L118 152L82 152Z" fill="#302b38" stroke="#1c1410" stroke-width="3"/>
+    <path d="M95 152L105 152L105 166L95 166Z" fill="#211d27" stroke="#1c1410" stroke-width="3"/>
+    <path d="M95 156L105 156M95 161L105 161" stroke="#413b4d" stroke-width="2.5"/>
+    <circle cx="100" cy="170" r="5.5" fill="#302b38" stroke="#1c1410" stroke-width="3"/>
+  </g>
+</svg>

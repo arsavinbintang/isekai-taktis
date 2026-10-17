@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Isekai Tactics</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= SPLASH ART (layar pembuka, diatur admin) ================= -->
+<div id="splash" class="splash" hidden>
+  <div class="splashArt" id="splashArt"></div>
+  <div class="splashVeil"></div>
+  <div class="splashTxt">
+    <h1 id="splashTitle">Isekai Tactics</h1>
+    <p id="splashSub">Perang taktik di tanah para raja</p>
+    <button class="btn red" id="splashGo">Masuk ke medan</button>
+    <p class="splashBy">Made by iwak team</p>
+  </div>
+</div>
+<header id="hud" hidden>
+  <span class="hudstat">
+    <span class="gems"><i class="gem"></i><b id="gem">0</b></span>
+    <span class="rankpip" title="Poin peringkat"><i class="shield"></i><b id="pts">1000</b><small id="tier">Perunggu</small></span>
+    <span id="whoami"></span>
+  </span>
+  <button id="back" class="xb" onclick="go('menu')" aria-label="Tutup, kembali ke menu utama" title="Tutup">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+  </button>
+</header>
+<div id="toast" hidden></div>
+
+<!-- ================= MENU ================= -->
+<section id="menu" class="screen">
+  <svg class="bgart" viewBox="0 0 1200 640" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#0d1526"/><stop offset=".55" stop-color="#2a3550"/><stop offset="1" stop-color="#6b5a52"/>
+      </linearGradient>
+      <linearGradient id="watr" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#1d3b55"/><stop offset="1" stop-color="#0d1c2b"/>
+      </linearGradient>
+    </defs>
+    <rect width="1200" height="640" fill="url(#sky)"/>
+    <circle cx="960" cy="120" r="42" fill="#f3e6bd" opacity=".9"/>
+    <circle cx="944" cy="110" r="42" fill="#0d1526" opacity=".55"/>
+    <g fill="#0f1826" opacity=".9">
+      <path d="M0 380 L150 250 L250 340 L340 270 L430 380z"/><path d="M760 380 L880 260 L980 350 L1080 280 L1200 380z"/>
+    </g>
+    <!-- KASTEL DENGAN PANJI -->
+    <g class="castle">
+      <path fill="#17110c" d="M300 640V330h40v-40h16v-16h16v16h16v40h40V250h30v-30h20v30h30v390z
+        M470 640V300h250v340z M740 640V330h40v-40h16v-16h16v16h16v40h40v300z"/>
+      <path fill="#17110c" d="M462 300h264l-16-34H478z"/>
+      <g fill="#e0a83a">
+        <rect x="540" y="340" width="16" height="26"/><rect x="580" y="340" width="16" height="26"/><rect x="620" y="340" width="16" height="26"/>
+        <rect x="360" y="300" width="14" height="22"/><rect x="796" y="300" width="14" height="22"/>
+        <path d="M566 470h48v70h-48z" opacity=".75"/>
+      </g>
+      <g class="flagpole"><rect x="374" y="180" width="5" height="80" fill="#0d0a07"/>
+        <path class="flag f1" d="M379 184h56l-14 16 14 16h-56z" fill="#2f5f9e" stroke="#0d0a07" stroke-width="3"/></g>
+      <g class="flagpole"><rect x="810" y="180" width="5" height="80" fill="#0d0a07"/>
+        <path class="flag f2" d="M815 184h56l-14 16 14 16h-56z" fill="#a33b2c" stroke="#0d0a07" stroke-width="3"/></g>
+      <g class="flagpole"><rect x="596" y="196" width="5" height="74" fill="#0d0a07"/>
+        <path class="flag f3" d="M601 200h64l-16 17 16 17h-64z" fill="#e0a83a" stroke="#0d0a07" stroke-width="3"/></g>
+    </g>
+    <!-- SUNGAI + JEMBATAN BATU -->
+    <rect x="0" y="500" width="1200" height="140" fill="url(#watr)"/>
+    <g class="waves" stroke="#3d6a8c" stroke-width="4" opacity=".7" fill="none">
+      <path d="M40 528q30-12 60 0t60 0"/><path d="M980 556q30-12 60 0t60 0"/><path d="M300 590q30-12 60 0t60 0"/>
+    </g>
+    <g class="bridge">
+      <path fill="#6b6459" stroke="#0d0a07" stroke-width="4" d="M420 640V512h360v128z"/>
+      <path fill="#132234" d="M470 640v-78a130 90 0 0 1 260 0v78z"/>
+      <path fill="none" stroke="#0d0a07" stroke-width="4" d="M470 640v-78a130 90 0 0 1 260 0v78"/>
+      <g stroke="#4e4941" stroke-width="3">
+        <path d="M420 546h360M420 584h360M470 512v34M540 512v34M610 512v34M680 512v34"/>
+      </g>
+      <g stroke="#0d0a07" stroke-width="4" fill="none"><path d="M420 512h360"/></g>
+      <g class="torch"><circle cx="436" cy="500" r="7" fill="#e0a83a"/><circle cx="764" cy="500" r="7" fill="#e0a83a"/></g>
+    </g>
+    <!-- RERUNTUHAN DI DEPAN -->
+    <g class="ruins" fill="#2b2723" stroke="#0d0a07" stroke-width="4">
+      <path d="M40 640V470h60v26h-16v30h18v34h-20v44h22v36z"/>
+      <path d="M150 640V520h52v-34l14-16 14 16v154z"/>
+      <path d="M1060 640V500h46v-40l16-18 16 18v180z"/>
+      <path d="M1130 640v-96h44v-28h-14v-24h16v148z"/>
+      <path d="M118 560h40v18h-40z" opacity=".8"/>
+    </g>
+    <g class="ivy" fill="#2f5f2a">
+      <path d="M62 486c14 10 6 30 20 34-16 6-24-12-30-22z"/><path d="M1084 512c14 10 6 30 20 34-16 6-24-12-30-22z"/>
+    </g>
+    <rect x="0" y="636" width="1200" height="8" fill="#0d0a07"/>
+  </svg>
+
+  <div class="sign wood">
+    <svg class="crest" viewBox="0 0 48 56" aria-hidden="true"><path d="M4 4h40v26c0 14-10 22-20 26C14 52 4 44 4 30z" fill="#a33b2c" stroke="#1c1410" stroke-width="3"/><path d="M24 12v32M14 22h20" stroke="#e0a83a" stroke-width="4"/></svg>
+    <h1>Isekai Tactics</h1><p>Perang taktik di tanah para raja</p>
+  </div>
+  <div id="offline" class="warn" hidden>
+    <b>Server PHP belum terhubung</b> — memakai data contoh, progres hanya sementara.
+    <button id="whyBtn" class="lnk" type="button">Lihat penyebab</button>
+    <div id="why" hidden></div>
+  </div>
+  <div class="menuTop">
+    <button id="musBtn" class="btn alt sm" onclick="musicToggle()" aria-pressed="false" title="Nyalakan / matikan musik">♪ Musik: mati</button>
+    <button id="sfxBtn" class="btn alt sm" onclick="sfxToggle()" aria-pressed="true" title="Nyalakan / matikan efek suara tombol">🔊 Suara: nyala</button>
+    <button class="btn alt adm" onclick="go('studio')" hidden>Studio</button>
+    <button id="authBtn" class="btn alt" onclick="authClick()">Masuk</button>
+  </div>
+
+  <!-- top bar kilat: koleksi yang sudah terbuka (hanya tampil di HP) -->
+  <div id="quickbar" hidden>
+    <span class="qlab">Koleksi</span>
+    <div id="qinner" class="qinner"></div>
+  </div>
+
+  <div id="menuPanels">
+    <div class="mpanel" data-p="story">
+      <button class="btn lead" onclick="go('story')">Lanjut Alur Cerita</button>
+      <p class="hint">Bab 1 = tutorial. Menang untuk membuka bab berikutnya.</p>
+    </div>
+    <div class="mpanel" data-p="war" hidden>
+      <button class="btn" onclick="setup('CLASSIC')">Duel biasa</button>
+      <button class="btn red" onclick="setup('RANKED')">Duel ranked</button>
+      <button class="btn" onclick="setup('PVP')">Dua pemain</button>
+      <button class="btn red alt" onclick="go('ranked')">Peringkat</button>
+    </div>
+    <div class="mpanel" data-p="col" hidden>
+      <button class="btn alt" onclick="go('gacha')">Pemanggilan</button>
+      <button class="btn alt" onclick="go('roster')">Pasukan</button>
+      <button class="btn alt" onclick="go('armory')">Gudang Senjata</button>
+    </div>
+  </div>
+
+  <div id="credit">Made by iwak team</div>
+
+  <nav id="tabbar">
+    <button type="button" class="tab on" data-tab="story" onclick="mtab('story')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 6.6C10.4 5.1 8.3 4.5 6 4.5H3.5v13H6c2.3 0 4.4.6 6 2 1.6-1.4 3.7-2 6-2h2.5v-13H18c-2.3 0-4.4.6-6 2.1z"/><path d="M12 6.6v12.9"/></svg>
+      <span>Alur Cerita</span>
+    </button>
+    <button type="button" class="tab" data-tab="war" onclick="mtab('war')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3.2l7.5 2.6v5.6c0 4.6-3.1 7.9-7.5 9.4-4.4-1.5-7.5-4.8-7.5-9.4V5.8z"/><path d="M12 8.4v6.6M9.2 11.4h5.6"/></svg>
+      <span>Perang</span>
+    </button>
+    <button type="button" class="tab" data-tab="col" onclick="mtab('col')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3.5 9.5a3 3 0 0 1 3-3h11a3 3 0 0 1 3 3v8a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"/><path d="M3.5 11.5h17M10.2 11.5h3.6v3.4h-3.6z"/></svg>
+      <span>Koleksi</span>
+    </button>
+  </nav>
+</section>
+
+<!-- ================= LOGIN ================= -->
+<section id="login" class="screen floor">
+  <form class="panel narrow" onsubmit="event.preventDefault();doAuth('login')">
+    <h2>Masuk ke Benteng</h2>
+    <p class="hint">Akun admin bawaan: <b>admin</b> / <b>admin</b>. Pendaftar baru jadi pemain biasa.</p>
+    <label>Username</label><input id="lu" autocomplete="username" required>
+    <label>Sandi</label><input id="lp" type="password" autocomplete="current-password" required>
+    <div class="row" style="margin-top:12px"><button class="btn">Masuk</button><button type="button" class="btn alt" onclick="doAuth('register')">Daftar</button></div>
+    <p class="hint">Progres tamu ikut pindah ke akun saat mendaftar.</p>
+  </form>
+</section>
+
+<!-- ================= CERITA ================= -->
+<section id="story" class="screen floor">
+  <div class="panel narrow">
+    <h2>Alur Cerita</h2>
+    <p class="hint">Bab 1 = tutorial. Lawan bab berikutnya ditentukan admin.</p>
+    <div id="chapters" class="list"></div>
+  </div>
+</section>
+
+<section id="scene" class="screen" onclick="nextLine()">
+  <div id="stand"></div>
+  <div id="dlg" class="wood" hidden><div id="who" class="tag"></div><p id="txt"></p><small>Klik untuk lanjut</small></div>
+</section>
+
+<!-- ================= GACHA ================= -->
+<section id="gacha" class="screen floor">
+  <div class="panel narrow">
+    <h2>Pemanggilan</h2>
+    <p class="hint">Bintang 5 dijamin tiap 30 tarikan. Kartu kembar kembali jadi permata.</p>
+    <details class="det"><summary>Aturan lengkap</summary>
+      <p class="hint">Dua jenis panji: <b>karakter</b> dan <b>senjata</b>, hitungan pity terpisah tiap jenis. Peluang bintang 5 = 4%, bintang 4 = 12%, dijamin bintang 5 setiap 30 panggilan. Kartu kembar dikembalikan sesuai bintangnya: 30 (bintang 3), 80 (bintang 4), atau 200 (bintang 5).</p>
+    </details>
+    <div class="row pityrow">
+      <span>Panji karakter: <b id="pityC">0</b>/30</span>
+      <span>Panji senjata: <b id="pityW">0</b>/30</span>
+    </div>
+    <div id="banners" class="cards bn"></div>
+    <div class="row"><button class="btn" onclick="pull(1)">Panggil 1x (100)</button><button class="btn red" onclick="pull(10)">Panggil 10x (1000)</button></div>
+    <p class="hint" id="gachaWho"></p>
+  </div>
+  <div id="pulls" class="cards"></div>
+</section>
+
+<!-- Overlay animasi pemanggilan — piramida naik sampai 100% -->
+<div id="gachaAnim" class="ganim" hidden>
+  <div class="ganimBox">
+    <div class="ganimName" id="gaName">—</div>
+    <div class="pyrWrap">
+      <svg id="pyrSvg" viewBox="0 0 200 170" aria-hidden="true">
+        <defs>
+          <clipPath id="pyrClip"><polygon points="100,8 192,162 8,162"/></clipPath>
+          <linearGradient id="pyrGrad" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#8a5a1e"/><stop offset="50%" stop-color="#d99a2b"/><stop offset="100%" stop-color="#ffe08a"/>
+          </linearGradient>
+        </defs>
+        <polygon class="pyrBase" points="100,8 192,162 8,162"/>
+        <g clip-path="url(#pyrClip)">
+          <rect id="pyrFill" x="0" y="170" width="200" height="170" fill="url(#pyrGrad)"/>
+        </g>
+        <polygon class="pyrLine" points="100,8 192,162 8,162"/>
+        <g class="pyrRungs">
+          <polygon points="100,44 168,162 32,162"/><polygon points="100,80 145,162 55,162"/>
+          <polygon points="100,116 123,162 77,162"/>
+        </g>
+        <polygon id="pyrCap" class="pyrCap" points="100,8 118,40 82,40"/>
+      </svg>
+      <div class="pyrPct"><b id="gaPct">0%</b><span id="gaStage">Mengumpulkan nyawa…</span></div>
+    </div>
+    <div class="ganimBar"><i id="gaBar"></i></div>
+    <button class="btn ganimSkip" id="gaSkip">Lewati</button>
+  </div>
+</div>
+
+<!-- ================= PASUKAN ================= -->
+<section id="roster" class="screen floor">
+  <div class="split">
+    <div id="rlist" class="cards"></div>
+    <div id="rdet" class="panel">Pilih karakter dari daftar.</div>
+  </div>
+</section>
+
+<!-- ================= GUDANG SENJATA ================= -->
+<section id="armory" class="screen floor">
+  <div class="split">
+    <div id="wlist" class="cards"></div>
+    <div id="wdet" class="panel">Pilih senjata dari daftar.</div>
+  </div>
+</section>
+
+<!-- ================= PERINGKAT ================= -->
+<section id="ranked" class="screen floor">
+  <div class="panel narrow center">
+    <h2>Peringkat</h2>
+    <div id="myrank"></div>
+    <p class="hint">Makin tinggi peringkat, makin cerdas AI dan besar statistiknya.</p>
+    <button class="btn red" onclick="setup('RANKED')">Tantang lawan acak</button>
+  </div>
+  <div class="panel"><div id="lb" class="list"></div></div>
+</section>
+
+<!-- ================= PERSIAPAN ================= -->
+<section id="setup" class="screen floor">
+  <div class="panel">
+    <h2 id="setupT"></h2>
+    <p id="setupHint"></p>
+    <div id="foeBox" class="foebox"></div>
+    <p>Pilih hingga 3 komandan. Senjata yang terpasang di halaman Pasukan ikut serta beserta pasifnya.</p>
+    <div id="pickList" class="cards"></div>
+    <button class="btn red" onclick="startBattle()">Mulai pertempuran</button>
+  </div>
+</section>
+
+<!-- ================= PERTEMPURAN ================= -->
+<section id="battle" class="screen">
+  <button id="bexit" class="xb big" onclick="exitWar()" aria-label="Tutup, keluar ke menu utama" title="Keluar ke menu utama">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+  </button>
+  <button id="bzoom" class="xb zoom" onclick="toggleZoom()" aria-label="Perbesar peta" title="Perbesar / perkecil peta">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21M8 10.5h5M10.5 8v5"/></svg>
+  </button>
+  <div class="stage">
+    <div class="bar wood"><span>Koin: <b id="c1">0</b></span><strong id="turn"></strong><span class="foeCoin">Lawan: <b id="c2">?</b></span></div>
+    <div class="mapwrap"><canvas id="cv" width="768" height="576"></canvas></div>
+  </div>
+  <aside class="side">
+    <div id="info" class="panel"></div>
+    <div id="log" class="wood"></div>
+    <button id="end" class="btn red" onclick="endTurn()">Akhiri giliran</button>
+  </aside>
+  <div id="endm" class="modal" hidden>
+    <div class="panel center"><h2 id="endT"></h2><p id="endR"></p><button class="btn" onclick="endBattle()">Lanjut</button></div>
+  </div>
+</section>
+
+<!-- ================= STUDIO (ADMIN) ================= -->
+<section id="studio" class="screen floor">
+  <div class="row">
+    <button class="btn" onclick="tabTo('char')">Karakter</button>
+    <button class="btn" onclick="tabTo('weapon')">Senjata</button>
+    <button class="btn" onclick="tabTo('story')">Cerita</button>
+    <button class="btn" onclick="tabTo('banner')">Banner</button>
+    <button class="btn" onclick="tabTo('set')">Musik &amp; Splash</button>
+  </div>
+
+  <div id="tabChar" class="studio">
+    <div id="clist" class="panel"></div>
+    <form id="cf" class="panel" onsubmit="saveChar(event)">
+      <input type="hidden" name="id"><input type="hidden" name="old_image">
+      <div class="row"><div id="prev"></div><div class="grow"><label>Gambar (PNG/JPG/WEBP — otomatis dikecilkan bila terlalu besar)</label><input type="file" name="image" id="imgf" accept="image/png,image/jpeg,image/webp"></div></div>
+      <label>Nama</label><input name="name" required>
+      <div class="row">
+        <div class="grow"><label>Gelar</label><input name="title"></div>
+        <div class="grow"><label>Faksi / asal</label><input name="faction"></div>
+        <div class="grow"><label>Bintang</label><select name="rarity"><option value="5">5</option><option value="4">4</option><option value="3" selected>3</option></select></div>
+      </div>
+      <div class="row"><div class="grow"><label>HP</label><input type="number" name="hp"></div><div class="grow"><label>ATK</label><input type="number" name="atk"></div><div class="grow"><label>AP</label><input type="number" name="ap" min="3" max="8"></div></div>
+      <label>Ultimate</label>
+      <select name="ult"><option>AoE Heal</option><option>AoE Dmg</option><option>Warcry</option><option>Teleport</option></select>
+      <div class="row">
+        <div class="grow"><label>Pasif bawaan (selalu aktif)</label><select name="passive" id="cfpass"></select></div>
+        <div class="grow"><label>Skill aktif (butuh AP + jeda)</label><select name="skill" id="cfskill"></select></div>
+      </div>
+      <label>Ringkasan</label><input name="lore">
+      <label>Latar belakang karakter</label><textarea name="backstory" rows="6" placeholder="Asal usul, motivasi, rahasia..."></textarea>
+      <div class="row"><button class="btn">Simpan karakter</button><button type="button" class="btn red" onclick="delChar()">Hapus</button></div>
+    </form>
+  </div>
+
+  <div id="tabWeapon" class="studio" hidden>
+    <div id="wcol" class="panel"></div>
+    <form id="wf" class="panel" onsubmit="saveWeapon(event)">
+      <input type="hidden" name="id"><input type="hidden" name="old_image">
+      <div class="row"><div id="wprev"></div><div class="grow"><label>Gambar senjata (otomatis dikecilkan bila terlalu besar)</label><input type="file" name="image" id="wimgf" accept="image/png,image/jpeg,image/webp"></div></div>
+      <label>Nama senjata</label><input name="name" required>
+      <div class="row">
+        <div class="grow"><label>Jenis</label><select name="kind" id="wk"></select></div>
+        <div class="grow"><label>Bintang</label><select name="rarity"><option value="5">5</option><option value="4">4</option><option value="3" selected>3</option></select></div>
+      </div>
+      <div class="row">
+        <div class="grow"><label>Tambahan ATK</label><input type="number" name="w_atk" min="0" max="200"></div>
+        <div class="grow"><label>Tambahan HP</label><input type="number" name="w_hp" min="0" max="800"></div>
+        <div class="grow"><label>Tambahan kritis (%)</label><input type="number" name="w_crit" min="0" max="60"></div>
+      </div>
+      <label>Senjata sejati milik karakter</label>
+      <select name="true_for" id="wtrue"><option value="0">— bukan senjata sejati siapa pun —</option></select>
+      <label>Skill pasif (hanya aktif saat dipakai karakter pemiliknya)</label>
+      <select name="passive" id="wpass"></select>
+      <p class="hint" id="wpassHint"></p>
+      <div class="row"><button class="btn">Simpan senjata</button><button type="button" class="btn red" onclick="delWeapon()">Hapus</button></div>
+    </form>
+  </div>
+
+  <div id="tabStory" class="studio" hidden>
+    <div id="slist" class="panel"></div>
+    <form id="sf" class="panel" onsubmit="saveChap(event)">
+      <input type="hidden" name="id">
+      <label>Judul bab</label><input name="title" required>
+      <div class="row">
+        <div class="grow"><label>Urutan</label><input type="number" name="sort_order"></div>
+        <div class="grow"><label>Tingkat kesulitan AI</label><select name="difficulty"><option value="1">1 — mudah</option><option value="2">2 — menengah</option><option value="3">3 — sulit</option></select></div>
+        <div class="grow"><label>Hadiah (permata)</label><input type="number" name="reward"></div>
+      </div>
+      <label class="chk"><input type="checkbox" name="battle" value="1"> Ada pertempuran setelah cerita</label>
+      <label>Lawan di pertempuran bab ini</label>
+      <div id="senemies" class="bchars"></div>
+      <p class="hint">Kamu yang menentukan siapa yang menjadi lawan. Minimal satu karakter.</p>
+      <label>Naskah (satu baris = satu dialog, format Nama: teks)</label>
+      <textarea name="script" rows="10" placeholder="Narator: Hari itu langit terbelah.&#10;Valerius: Bersiaplah."></textarea>
+      <p class="hint">Nama yang sama dengan karakter akan menampilkan gambarnya. Baris berawalan # diabaikan. Gunakan <b>@bg nama</b> untuk ganti latar (hall, field, forest, night, castle, ruins, camp).</p>
+      <div class="row"><button class="btn">Simpan bab</button><button type="button" class="btn red" onclick="delChap()">Hapus</button></div>
+    </form>
+  </div>
+
+  <div id="tabBanner" class="studio" hidden>
+    <div id="blist" class="panel"></div>
+    <form id="bf" class="panel" onsubmit="saveBanner(event)">
+      <input type="hidden" name="id"><input type="hidden" name="old_image">
+      <div class="row"><div id="bprev"></div><div class="grow"><label>Gambar panji (opsional — otomatis dikecilkan bila terlalu besar)</label><input type="file" name="image" id="bimgf" accept="image/png,image/jpeg,image/webp"></div></div>
+      <label>Nama banner</label><input name="name" required>
+      <label>Deskripsi</label><input name="description">
+      <label>Jenis banner</label>
+      <select name="kind" id="bkind" onchange="renderBannerPool()"><option value="char">Karakter</option><option value="weapon">Senjata</option></select>
+      <label>Isi banner</label><div id="bchars" class="bchars"></div>
+      <div class="row"><button class="btn">Simpan banner</button><button type="button" class="btn red" onclick="delBanner()">Hapus</button></div>
+    </form>
+  </div>
+
+  <div id="tabSet" class="studio" hidden>
+    <form id="setf" class="panel" onsubmit="saveSettings(event)">
+      <h3>Musik latar</h3>
+      <p class="hint">Dua pilihan: <b>generated</b> (lagu disusun langsung oleh browser lewat WebAudio, tanpa berkas) atau <b>berkas</b> (unggah MP3/OGG/WAV milikmu).</p>
+      <label>Sumber musik</label>
+      <select name="music_mode">
+        <option value="gen">Generated (WebAudio)</option>
+        <option value="file">Berkas unggahan</option>
+        <option value="off">Matikan musik</option>
+      </select>
+      <label>Lagu generated</label>
+      <select name="music_track" id="musicTrack"></select>
+      <label>Volume — <b id="musicVolOut">55%</b></label>
+      <input type="range" name="music_vol" min="0" max="100" step="5" oninput="document.getElementById('musicVolOut').textContent=this.value+'%'">
+      <div class="row">
+        <div class="grow"><label>Berkas musik (MP3/OGG/WAV, maks 8 MB)</label><input type="file" name="music_file" id="musicFileIn" accept="audio/mpeg,audio/ogg,audio/wav"></div>
+      </div>
+      <input type="hidden" name="old_music">
+      <div id="sMusicPrev" class="hint"></div>
+      <p class="hint">Saat ini: <b id="musicNow">—</b></p>
+
+      <h3 style="margin-top:16px">Splash art (layar pembuka)</h3>
+      <p class="hint">Tampil sekali saat permainan dibuka. Matikan bila ingin langsung ke menu.</p>
+      <label class="chk"><input type="checkbox" name="splash_on"> Tampilkan splash art</label>
+      <label>Judul</label><input name="splash_text" maxlength="70" placeholder="Isekai Tactics">
+      <label>Tagline</label><input name="splash_sub" maxlength="120" placeholder="Perang taktik di tanah para raja">
+      <div class="row">
+        <div class="grow"><label>Gambar splash (otomatis dikecilkan bila terlalu besar)</label><input type="file" name="splash_image" id="splashIn" accept="image/png,image/jpeg,image/webp"></div>
+      </div>
+      <input type="hidden" name="old_splash">
+      <div id="sSplashPrev" class="hint"></div>
+      <div class="row" style="margin-top:12px"><button class="btn">Simpan pengaturan</button></div>
+    </form>
+  </div>
+</section>
+
+<script src="game.js"></script>
+<script src="battle.js"></script>
+<script src="studio.js"></script>
+</body>
+</html>

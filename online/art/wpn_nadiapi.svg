@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect x="6" y="6" width="188" height="188" rx="16" fill="#241a12" stroke="#1c1410" stroke-width="8"/>
+  <rect x="17" y="17" width="166" height="166" rx="10" fill="none" stroke="#4a3a28" stroke-width="3"/>
+  <g transform="rotate(-24 100 100)">
+    <rect x="92" y="74" width="16" height="112" rx="5" fill="#2b2118" stroke="#1c1410" stroke-width="6"/>
+    <path d="M92 112h16M92 130h16M92 148h16" stroke="#5a4632" stroke-width="4"/>
+    <path d="M100 8c16 8 26 24 24 40-2 14-12 24-24 26-12-2-22-12-24-26-2-16 8-32 24-40z" fill="#e8791f" stroke="#1c1410" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M100 24c9 6 15 16 13 26-1 9-7 15-13 16-6-1-12-7-13-16-2-10 4-20 13-26z" fill="#ffd34d" stroke="#1c1410" stroke-width="4"/>
+    <path d="M100 40c4 4 7 9 6 14-1 5-4 8-6 9-2-1-5-4-6-9-1-5 2-10 6-14z" fill="#fff0c0"/>
+    <path d="M70 78h60l-8 16H78z" fill="#3a2a1c" stroke="#1c1410" stroke-width="5" stroke-linejoin="round"/>
+    <circle cx="100" cy="76" r="6" fill="#e8791f" stroke="#1c1410" stroke-width="4"/>
+  </g>
+  <path d="M40 150h120l-14 16 14 16H40l14-16z" fill="#a33b2c" stroke="#1c1410" stroke-width="5" stroke-linejoin="round"/>
+</svg>
